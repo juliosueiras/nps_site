@@ -1,5 +1,7 @@
 # vue-typescript
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/juliosueiras/nps_site.svg)](https://greenkeeper.io/)
+
 > vue + typescript + sass + karma + mocha
 
 ## Build Setup
