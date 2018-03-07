@@ -1,0 +1,78 @@
+<div>
+	<data-tables :data="data" :show-action-bar="false" cell-click="click" :custom-filters="customFilters">
+
+		<el-row slot="custom-tool-bar" style="margin-bottom: 10px">
+			<el-col :span="5">
+				<el-checkbox v-model="above361">3.61+</el-checkbox>
+				<el-checkbox v-model="onlyCompleted">Only Completed</el-checkbox>
+			</el-col>
+			<el-col :span="5">
+				<el-select v-model="customFilters[0].vals" multiple="multiple">
+					<el-option label="US" value="US"></el-option>
+					<el-option label="ASIA" value="ASIA"></el-option>
+					<el-option label="JP" value="JP"></el-option>
+					<el-option label="EU" value="EU"></el-option>
+				</el-select>
+			</el-col :span="5">
+			<el-col :span="5" :offset="9">
+				<el-input v-model="customFilters[2].vals">
+				</el-input>
+			</el-col>
+		</el-row>
+
+
+
+
+
+		<el-table-column label="Title ID" sortable="custom">
+			<template scope="scope">
+				{{ scope.row["Title ID"] }}
+			</template>
+		</el-table-column>
+		<el-table-column label="Region" resizable="true" sortable="custom">
+			<template scope="scope">
+				{{ scope.row["Region"] }}
+			</template>
+		</el-table-column>
+		<el-table-column label="Name" resizable="true" sortable="custom">
+			<template scope="scope">
+				{{ scope.row["Name"] }}
+			</template>
+		</el-table-column>
+		<el-table-column label="Actions" resizable="true" sortable="custom">
+			<template scope="scope">
+				<el-button type="text" @click="click(scope.row)">
+					Details
+				</el-button>
+			</template>
+		</el-table-column>
+	</data-tables>
+	<el-dialog title="Details" :visible.sync="dialogVisible" width="80%">
+		<span>
+			<h1>{{ currentData.name }}</h1>
+			<img width="100" height="100" :src="currentData.images[0].url" />
+			<br>
+			<br>
+
+			<b>Price:</b> {{ (currentData.default_sku != undefined) ? currentData.default_sku.display_price : "N/A"  }}
+			<br>
+			<br>
+			<b>PKG:</b> <a class="pkg" :href='currentRow["PKG direct link"]'>PKG</a>
+			<br>
+			<br>
+			<b>zRIF:</b> {{ currentRow["zRIF"] }}
+			<br>
+			<br>
+			<b>Content ID:</b> {{ currentRow["Content ID"] }}
+
+			<h2>Description:</h2>
+			<span v-html="currentData.long_desc"></span>
+
+
+		
+		</span>
+		<span slot="footer" class="dialog-footer">
+			<el-button @click="dialogVisible = false">Close</el-button>
+		</span>
+	</el-dialog>
+</div>

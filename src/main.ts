@@ -1,13 +1,24 @@
 import Vue from 'vue';
-import App from './App.vue';
 import router from './router';
-import store from './store';
-import './registerServiceWorker';
 
-Vue.config.productionTip = false;
+import ElementUI from 'element-ui';
+import DataTables from 'vue-data-tables';
+import 'element-ui/lib/theme-chalk/index.css';
+
+import { createState } from './store/state';
+import { createStore } from './store';
+
+import lang from 'element-ui/lib/locale/lang/en';
+import locale from 'element-ui/lib/locale';
+
+Vue.use(ElementUI);
+Vue.use(DataTables);
+
+locale.use(lang);
+
 
 new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');
+  el: '#app',
+  store: createStore(createState()),  router
+});
+
