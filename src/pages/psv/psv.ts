@@ -50,7 +50,7 @@ export class PSVPage extends Vue {
 
 	mounted() {
 		const that = this;
-		PapaParse.parse("https://docs.google.com/spreadsheets/d/1HfI8elhzJW9XP9_A6KLx6AZpwP9vvWTal6i7NVwVWzs/export?format=csv&id=1HfI8elhzJW9XP9_A6KLx6AZpwP9vvWTal6i7NVwVWzs&gid=1180017671", {
+		PapaParse.parse("https://nopaystation.com/tsv/PSV_GAMES.tsv", {
 			header: true,
 			download: true,
 			complete: function(results) {
